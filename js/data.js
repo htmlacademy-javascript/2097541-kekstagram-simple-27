@@ -28,4 +28,4 @@ const createPhoto = (index) => ({
 
 const getPhotos = () => Array.from({length: PHOTOS_COUNT}, (_, photoIndex) => createPhoto(photoIndex + 1));
 
-getPhotos();
+export {getPhotos};
