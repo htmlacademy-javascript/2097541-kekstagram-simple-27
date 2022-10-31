@@ -20,7 +20,7 @@ const CommentsCount = {
 
 const createPhoto = (index) => ({
   id: index,
-  url: `photos/${index}`,
+  url: `photos/${index}.jpg`,
   description: getRandomArrayElement(DESCRIPTIONS),
   likes: getRandomNumber(LikesCount.MIN, LikesCount.MAX),
   comments: getRandomNumber(CommentsCount.MIN, CommentsCount.MAX)
