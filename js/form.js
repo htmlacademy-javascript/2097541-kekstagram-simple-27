@@ -1,20 +1,20 @@
-import {isEscapeKey} from './util.js';
+import {isEscapeKey, clearField} from './util.js';
 
 const uploadFile = document.querySelector('#upload-file');
 const uploadCancel = document.querySelector('#upload-cancel');
 const uploadOverlay = document.querySelector('.img-upload__overlay');
 const form = document.querySelector('.img-upload__form');
-const pristine = new Pristine(form);
-
-const clearField = (field) => {
-  field.value = '';
-};
+new Pristine(form);
 
 const onModalEscKeydown = (evt) => {
   if ( isEscapeKey(evt)) {
+    evt.preventDefault();
+
     uploadOverlay.classList.add('hidden');
     document.body.classList.remove('modal-open');
-    closeUploadModal();
+
+    clearField(uploadFile);
+    document.removeEventListener('keydown', onModalEscKeydown);
   }
 };
 
@@ -41,18 +41,6 @@ uploadFile.addEventListener('change', () => {
 
 uploadCancel.addEventListener('click', () => {
   closeUploadModal();
-});
-
-
-form.addEventListener('submit', (evt) => {
-  evt.preventDefault();
-
-  const isValid = pristine.validate();
-  if (isValid) {
-    console.log('Можно отправлять');
-  } else {
-    console.log('Форма невалидна');
-  }
 });
 
 export {openUploadModal, closeUploadModal};
