@@ -22,6 +22,13 @@ const onModalEscKeydown = (evt) => {
   }
 };
 
+const onFormValid = (evt) => {
+  const isValid = pristine.validate();
+  if (!isValid) {
+    evt.preventDefault();
+  }
+};
+
 const openUploadModal = () => {
   uploadOverlay.classList.remove('hidden');
   document.body.classList.add('modal-open');
@@ -37,19 +44,10 @@ const closeUploadModal = () => {
   document.removeEventListener('keydown', onModalEscKeydown);
 };
 
-uploadFile.addEventListener('change', () => {
-  openUploadModal();
-});
+uploadFile.addEventListener('change', openUploadModal);
 
-uploadCancel.addEventListener('click', () => {
-  closeUploadModal();
-});
+uploadCancel.addEventListener('click', closeUploadModal);
 
-form.addEventListener('submit', (evt) => {
-  const isValid = pristine.validate();
-  if (!isValid) {
-    evt.preventDefault();
-  }
-});
+form.addEventListener('submit', onFormValid);
 
 export {openUploadModal, closeUploadModal};
