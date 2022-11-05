@@ -4,7 +4,11 @@ const uploadFile = document.querySelector('#upload-file');
 const uploadCancel = document.querySelector('#upload-cancel');
 const uploadOverlay = document.querySelector('.img-upload__overlay');
 const form = document.querySelector('.img-upload__form');
-const pristine = new Pristine(form);
+const pristine = new Pristine(form, {
+  classTo: 'img-upload__text',
+  errorTextParent: 'img-upload__text',
+  errorTextClass: 'img-upload__text-error',
+});
 
 const onModalEscKeydown = (evt) => {
   if ( isEscapeKey(evt)) {
@@ -34,8 +38,6 @@ const closeUploadModal = () => {
 };
 
 uploadFile.addEventListener('change', () => {
-  uploadOverlay.classList.remove('hidden');
-  document.body.classList.add('modal-open');
   openUploadModal();
 });
 
