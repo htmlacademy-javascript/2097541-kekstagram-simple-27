@@ -12,4 +12,10 @@ const getRandomNumber = (min, max) => {
 
 const getRandomArrayElement = (elements) => elements[getRandomNumber(0, elements.length - 1)];
 
-export {getRandomNumber, getRandomArrayElement};
+const isEscapeKey = (evt) => evt.key === 'Escape';
+
+const clearField = (field) => {
+  field.value = '';
+};
+
+export {getRandomNumber, getRandomArrayElement, isEscapeKey, clearField};
