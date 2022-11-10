@@ -1,6 +1,6 @@
 const imgPreview = document.querySelector('.img-upload__preview');
 const fieldsetEffects = document.querySelector('.img-upload__effects');
-
+let effectsId = '';
 const effects = {
   'effect-none' : 'none',
   'effect-chrome' : 'chrome',
@@ -11,7 +11,6 @@ const effects = {
 };
 
 const onEffectChange = (evt) => {
-  let effectsId = '';
   imgPreview.classList.remove(`effects__preview--${effectsId}`);
   if (evt.target.matches('input[type="radio"]')) {
     imgPreview.classList.add(`effects__preview--${effects[evt.target.id]}`);
