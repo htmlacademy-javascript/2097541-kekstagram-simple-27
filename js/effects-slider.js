@@ -3,6 +3,7 @@ import {effectsId, imgPreview, fieldsetEffects} from './photo-effects.js';
 const sliderElement = document.querySelector('.effect-level__slider');
 const effectValue = document.querySelector('.effect-level__value');
 
+sliderElement.classList.add('visually-hidden');
 const abc = () => {
   noUiSlider.create(sliderElement, {
     range: {
@@ -28,6 +29,7 @@ const abc = () => {
 
   fieldsetEffects.addEventListener('change', () => {
     if (effectsId === 'none') {
+      sliderElement.classList.add('visually-hidden');
       sliderElement.noUiSlider.updateOptions({
         range: {
           min: 0,
@@ -43,6 +45,7 @@ const abc = () => {
     }
 
     if (effectsId === 'chrome') {
+      sliderElement.classList.remove('visually-hidden');
       sliderElement.noUiSlider.updateOptions({
         range: {
           min: 0,
@@ -58,6 +61,7 @@ const abc = () => {
     }
 
     if (effectsId === 'sepia') {
+      sliderElement.classList.remove('visually-hidden');
       sliderElement.noUiSlider.updateOptions({
         range: {
           min: 0,
@@ -73,6 +77,7 @@ const abc = () => {
     }
 
     if (effectsId === 'marvin') {
+      sliderElement.classList.remove('visually-hidden');
       sliderElement.noUiSlider.updateOptions({
         range: {
           min: 0,
@@ -88,6 +93,7 @@ const abc = () => {
     }
 
     if (effectsId === 'phobos') {
+      sliderElement.classList.remove('visually-hidden');
       sliderElement.noUiSlider.updateOptions({
         range: {
           min: 0,
@@ -103,6 +109,7 @@ const abc = () => {
     }
 
     if (effectsId === 'heat') {
+      sliderElement.classList.remove('visually-hidden');
       sliderElement.noUiSlider.updateOptions({
         range: {
           min: 1,
