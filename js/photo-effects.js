@@ -22,4 +22,4 @@ const changeEffect = () => {
   fieldsetEffects.addEventListener('change', onEffectChange);
 };
 
-export {changeEffect};
+export {changeEffect, effectsId, fieldsetEffects, imgPreview};
