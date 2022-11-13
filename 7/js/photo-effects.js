@@ -1,4 +1,4 @@
-const imgPreview = document.querySelector('.img-upload__preview');
+const imgPreview = document.querySelector('.img-upload__preview').querySelector('img');
 const fieldsetEffects = document.querySelector('.img-upload__effects');
 let effectsId = '';
 const effects = {
