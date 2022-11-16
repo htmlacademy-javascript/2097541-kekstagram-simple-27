@@ -29,4 +29,4 @@ const changePhotoScale = () => {
   scaleBigger.addEventListener('click', onScaleBigger);
 };
 
-export {changePhotoScale};
+export {changePhotoScale, scaleValue};

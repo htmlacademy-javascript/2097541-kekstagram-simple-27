@@ -102,4 +102,4 @@ const addEffectsIntensity = () => {
   fieldsetEffects.addEventListener('change', onFieldsetEffects);
 };
 
-export {addEffectsIntensity};
+export {addEffectsIntensity, sliderElement};
