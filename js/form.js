@@ -7,6 +7,8 @@ const uploadFile = document.querySelector('#upload-file');
 const uploadCancel = document.querySelector('#upload-cancel');
 const uploadOverlay = document.querySelector('.img-upload__overlay');
 const form = document.querySelector('.img-upload__form');
+const effectInputNone = document.querySelector('#effect-none');
+const uploadPhotoForm = document.querySelector('#upload-file');
 
 const pristine = new Pristine(form, {
   classTo: 'img-upload__text',
@@ -15,6 +17,20 @@ const pristine = new Pristine(form, {
 });
 
 
+const clearPhotoForm = () => {
+  imgPreview.classList.remove(`effects__preview--${effectsId}`);
+  imgPreview.classList.add('effects__preview--none');
+  imgPreview.style.removeProperty('filter');
+  sliderElement.classList.add('visually-hidden');
+  imgPreview.style.transform = `scale(${1})`;
+  uploadPhotoForm.value = '';
+  scaleValue.value = `${100}%`;
+
+  if (!effectInputNone.checked) {
+    effectInputNone.checked = true;
+  }
+};
+
 const onModalEscKeydown = (evt) => {
   if ( isEscapeKey(evt)) {
     evt.preventDefault();
@@ -22,13 +38,7 @@ const onModalEscKeydown = (evt) => {
     uploadOverlay.classList.add('hidden');
     document.body.classList.remove('modal-open');
 
-    imgPreview.classList.remove(`effects__preview--${effectsId}`);
-    imgPreview.classList.add('effects__preview--none');
-    imgPreview.style.removeProperty('filter');
-    sliderElement.classList.add('visually-hidden');
-    imgPreview.style.transform = `scale(${1})`;
-    scaleValue.value = `${100}%`;
-
+    clearPhotoForm();
     clearField(uploadFile);
     document.removeEventListener('keydown', onModalEscKeydown);
   }
@@ -52,12 +62,7 @@ const closeUploadModal = () => {
   uploadOverlay.classList.add('hidden');
   document.body.classList.remove('modal-open');
 
-  imgPreview.classList.remove(`effects__preview--${effectsId}`);
-  imgPreview.classList.add('effects__preview--none');
-  imgPreview.style.removeProperty('filter');
-  sliderElement.classList.add('visually-hidden');
-  imgPreview.style.transform = `scale(${1})`;
-
+  clearPhotoForm();
   clearField(uploadFile);
   document.removeEventListener('keydown', onModalEscKeydown);
 };
