@@ -57,11 +57,11 @@ const sliderSettings = {
 const createSlider = () => {
   noUiSlider.create(sliderElement, {
     range: {
-      min: 0,
-      max: 1,
+      min: sliderSettings.none.minRange,
+      max:  sliderSettings.none.maxRange,
     },
-    start: 1,
-    step: 0.1,
+    start:  sliderSettings.none.start,
+    step:  sliderSettings.none.step,
     connect: 'lower',
     format: {
       to: (value) => {
