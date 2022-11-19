@@ -1,9 +1,9 @@
+import {createElement} from './util.js';
+
 const photosList = document.querySelector ('.pictures');
 const photoTemplate = document.querySelector('#picture').content.querySelector('.picture');
 
 const photosListFragment = document.createDocumentFragment();
-
-const createElement = (element) => element.cloneNode(true);
 
 const changeElement = (element, value) => {
   element.querySelector('.picture__img').src = value.url;

@@ -1,13 +1,16 @@
-import {openUploadModal, closeUploadModal} from './form.js';
+import {openUploadModal, closeUploadModal, setFormSubmit} from './form.js';
 import {changePhotoScale} from './photo-scale.js';
 import {changeEffect} from './photo-effects.js';
 import {addEffectsIntensity} from './effects-slider.js';
-import {takePhotos} from './photos-server.js';
+import {getData} from './api.js';
+// import {closeSendingMessage} from './form-message.js';
+import {addPhotos} from './miniatures.js';
 
-
-takePhotos();
+getData(addPhotos);
 openUploadModal();
 closeUploadModal();
 changePhotoScale();
 changeEffect();
 addEffectsIntensity();
+setFormSubmit(closeUploadModal);
+// closeSendingMessage();
