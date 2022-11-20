@@ -3,7 +3,8 @@ import {imgPreview, effectsId} from './photo-effects.js';
 import {sliderElement} from './effects-slider.js';
 import {scaleValue} from './photo-scale.js';
 import {sendData} from './api.js';
-import {sendingSuccessMessage} from './form-message.js';
+import {sendSuccessMessage} from './success-message.js';
+import {sendErrorMessage} from './error-message.js';
 
 const uploadFile = document.querySelector('#upload-file');
 const uploadCancel = document.querySelector('#upload-cancel');
@@ -83,9 +84,13 @@ const setFormSubmit = (onSuccess) => {
         () => {
           onSuccess();
           unblockSubmitButton();
-          sendingSuccessMessage();
+          sendSuccessMessage();
         },
-        () => showAlert('Не удалось отправить форму. Попробуйте ещё раз'),
+        () => {
+          sendErrorMessage();
+          unblockSubmitButton();
+          showAlert('Не удалось отправить форму. Попробуйте ещё раз');
+        },
         new FormData(evt.target),
       );
     }
@@ -98,4 +103,4 @@ uploadFile.addEventListener('change', openUploadModal);
 
 uploadCancel.addEventListener('click', closeUploadModal);
 
-export {openUploadModal, closeUploadModal, setFormSubmit};
+export {openUploadModal, closeUploadModal, setFormSubmit, onModalEscKeydown};
