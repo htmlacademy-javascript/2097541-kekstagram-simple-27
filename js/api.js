@@ -1,13 +1,15 @@
 
 const getData = (onSuccess) => {
-  fetch('https://27.javascript.pages.academy/kekstagram-simple/data')
+  const serverAddres = 'https://27.javascript.pages.academy/kekstagram-simple/data';
+  fetch(serverAddres)
     .then((response) => response.json())
     .then((photos) => {onSuccess(photos);});
 };
 
 const sendData = (onSuccess, onFail, body) => {
+  const serverAddres = 'https://27.javascript.pages.academy/kekstagram-simple';
   fetch(
-    ' https://27.javascript.pages.academy/kekstagram-simple',
+    serverAddres,
     {
       method: 'POST',
       body,
@@ -16,7 +18,7 @@ const sendData = (onSuccess, onFail, body) => {
     if (response.ok) {
       onSuccess();
     } else{
-      onFail();
+      throw Error;
     }
   })
     .catch(() => {

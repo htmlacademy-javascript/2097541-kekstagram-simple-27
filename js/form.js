@@ -1,6 +1,6 @@
 import {isEscapeKey, clearField, showAlert} from './util.js';
 import {imgPreview, effectsId} from './photo-effects.js';
-import {sliderElement} from './effects-slider.js';
+import {sliderElement, sliderFieldset} from './effects-slider.js';
 import {scaleValue} from './photo-scale.js';
 import {sendData} from './api.js';
 import {sendSuccessMessage} from './success-message.js';
@@ -14,6 +14,7 @@ const effectInputNone = document.querySelector('#effect-none');
 const uploadPhotoForm = document.querySelector('#upload-file');
 const submitButton = document.querySelector('#upload-submit');
 const comment = document.querySelector('.text__description');
+const alertMessage = 'Не удалось отправить форму. Попробуйте ещё раз';
 
 const pristine = new Pristine(form, {
   classTo: 'img-upload__text',
@@ -26,6 +27,7 @@ const clearPhotoForm = () => {
   imgPreview.classList.add('effects__preview--none');
   imgPreview.style.removeProperty('filter');
   sliderElement.classList.add('visually-hidden');
+  sliderFieldset.classList.add('visually-hidden');
   imgPreview.style.transform = `scale(${1})`;
   uploadPhotoForm.value = '';
   scaleValue.value = `${100}%`;
@@ -65,12 +67,8 @@ const closeUploadModal = () => {
   document.removeEventListener('keydown', onModalEscKeydown);
 };
 
-const blockSubmitButton = () => {
-  submitButton.disabled = true;
-};
-
-const unblockSubmitButton = () => {
-  submitButton.disabled = false;
+const disabledSubmitButton = (value) => {
+  submitButton.disabled = value;
 };
 
 const setFormSubmit = (onSuccess) => {
@@ -79,17 +77,17 @@ const setFormSubmit = (onSuccess) => {
 
     const isValid = pristine.validate();
     if (isValid) {
-      blockSubmitButton();
+      disabledSubmitButton(true);
       sendData(
         () => {
           onSuccess();
-          unblockSubmitButton();
+          disabledSubmitButton(false);
           sendSuccessMessage();
         },
         () => {
           sendErrorMessage();
-          unblockSubmitButton();
-          showAlert('Не удалось отправить форму. Попробуйте ещё раз');
+          disabledSubmitButton(false);
+          showAlert(alertMessage);
         },
         new FormData(evt.target),
       );
