@@ -1,10 +1,11 @@
 import {effectsId, imgPreview, fieldsetEffects} from './photo-effects.js';
 
 const sliderElement = document.querySelector('.effect-level__slider');
+const sliderFieldset = document.querySelector('.img-upload__effect-level');
 const effectValue = document.querySelector('.effect-level__value');
 
 sliderElement.classList.add('visually-hidden');
-
+sliderFieldset.classList.add('visually-hidden');
 const sliderSettings = {
   none: {
     minRange: 0,
@@ -57,11 +58,11 @@ const sliderSettings = {
 const createSlider = () => {
   noUiSlider.create(sliderElement, {
     range: {
-      min: 0,
-      max: 1,
+      min: sliderSettings.none.minRange,
+      max:  sliderSettings.none.maxRange,
     },
-    start: 1,
-    step: 0.1,
+    start:  sliderSettings.none.start,
+    step:  sliderSettings.none.step,
     connect: 'lower',
     format: {
       to: (value) => {
@@ -77,6 +78,7 @@ const createSlider = () => {
 
 const onFieldsetEffects = () => {
   sliderElement.classList.remove('visually-hidden');
+  sliderFieldset.classList.remove('visually-hidden');
   sliderElement.noUiSlider.updateOptions({
     range: {
       min: sliderSettings[effectsId].minRange,
@@ -94,6 +96,7 @@ const onFieldsetEffects = () => {
   if (effectsId === 'none') {
     imgPreview.style.removeProperty('filter');
     sliderElement.classList.add('visually-hidden');
+    sliderFieldset.classList.add('visually-hidden');
   }
 };
 
@@ -102,4 +105,4 @@ const addEffectsIntensity = () => {
   fieldsetEffects.addEventListener('change', onFieldsetEffects);
 };
 
-export {addEffectsIntensity, sliderElement};
+export {addEffectsIntensity, sliderElement, sliderFieldset};
