@@ -1,15 +1,16 @@
 
-const SERVER_ADDRES = 'https://27.javascript.pages.academy/kekstagram-simple';
+const MAIN_URL = 'https://27.javascript.pages.academy/kekstagram-simple';
+const POST_URL = `${MAIN_URL}/data`;
 
 const getData = (onSuccess) => {
-  fetch(`${SERVER_ADDRES}/data`)
+  fetch(POST_URL)
     .then((response) => response.json())
     .then((photos) => {onSuccess(photos);});
 };
 
 const sendData = (onSuccess, onFail, body) => {
   fetch(
-    SERVER_ADDRES,
+    MAIN_URL,
     {
       method: 'POST',
       body,
