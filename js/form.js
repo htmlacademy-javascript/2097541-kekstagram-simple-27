@@ -14,7 +14,7 @@ const effectInputNone = document.querySelector('#effect-none');
 const uploadPhotoForm = document.querySelector('#upload-file');
 const submitButton = document.querySelector('#upload-submit');
 const comment = document.querySelector('.text__description');
-const alertMessage = 'Не удалось отправить форму. Попробуйте ещё раз';
+const ALERT_MESSAGE = 'Не удалось отправить форму. Попробуйте ещё раз';
 
 const pristine = new Pristine(form, {
   classTo: 'img-upload__text',
@@ -67,7 +67,7 @@ const closeUploadModal = () => {
   document.removeEventListener('keydown', onModalEscKeydown);
 };
 
-const disabledSubmitButton = (value) => {
+const toggleSubmitButton = (value) => {
   submitButton.disabled = value;
 };
 
@@ -77,17 +77,17 @@ const setFormSubmit = (onSuccess) => {
 
     const isValid = pristine.validate();
     if (isValid) {
-      disabledSubmitButton(true);
+      toggleSubmitButton(true);
       sendData(
         () => {
           onSuccess();
-          disabledSubmitButton(false);
+          toggleSubmitButton(false);
           sendSuccessMessage();
         },
         () => {
           sendErrorMessage();
-          disabledSubmitButton(false);
-          showAlert(alertMessage);
+          toggleSubmitButton(false);
+          showAlert(ALERT_MESSAGE);
         },
         new FormData(evt.target),
       );
