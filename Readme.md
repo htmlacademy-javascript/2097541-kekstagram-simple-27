@@ -5,7 +5,7 @@
 
 ---
 
-_Не удаляйте и не изменяйте самовольно файлы и папки:_
+_Не удаляйте и не изменяйте самовольно файлы и папки:__
 _`.editorconfig`, `.eslintrc`, `.gitattributes`, `.gitignore`, `package-lock.json`, `package.json`., `.github`_
 
 ---
@@ -16,7 +16,7 @@ _`.editorconfig`, `.eslintrc`, `.gitattributes`, `.gitignore`, `package-lock.jso
 
 #### 1. Зарегистрируйтесь на Гитхабе
 
-Если у вас ещё нет аккаунта на [github.com](https://github.com/join), скорее зарегистрируйтесь.
+Если у вас ещё нет аккаунта на [github.com](https://github.com/join), скорее зарегистрируйтесь..
 
 #### 2. Создайте форк
 
